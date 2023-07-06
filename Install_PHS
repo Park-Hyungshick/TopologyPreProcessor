@@ -1,0 +1,25 @@
+# Install aclocal
+sudo apt-get install autotools-dev
+sudo apt-get install automake
+
+# Install mysql++ and boost
+sudo apt install mysql-server
+sudo apt install libboost-all-dev
+sudo apt-get install libmysql++-dev
+
+# Install openbabel 2.4.0
+wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-2-4-0.tar.gz
+tar -xzvf openbabel-2-4-0.tar.gz
+cd openbabel-openbabel-2-4-0/
+cmake ..
+make -j8
+sudo make install -j 8
+
+# Install TopologyPreProcessor
+./bootstrap.sh
+OPENBABEL_CFLAGS=-I/usr/local/include/openbabel-2.0/  OPENBABEL_LIBS=-Wl,-rpath=/usr/local/lib  LDFLAGS=-L/usr/local/lib
+./configure
+make -jN # N is a number of processor
+sudo make install -jN
+
+# test
